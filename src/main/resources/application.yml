@@ -1,0 +1,7 @@
+
+spring:
+  thymleaf:
+    cashe: false
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
