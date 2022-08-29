@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
-public class DesignTacoController extends UserDetailsService {
+public class DesignTacoController {
 
     private final JdbcIngredientRepository ingredientRepo;
 
