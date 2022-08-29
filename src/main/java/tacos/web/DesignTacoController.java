@@ -1,4 +1,4 @@
-package tacos;
+package tacos.web;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import lombok.extern.slf4j.Slf4j;
+import tacos.Ingredient;
 import tacos.Ingredient.Type;
+import tacos.Taco;
+import tacos.TacoOrder;
+import tacos.data.IngredientRepository;
 
 import javax.validation.Valid;
 
