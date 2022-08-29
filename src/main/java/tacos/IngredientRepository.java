@@ -1,10 +1,10 @@
-package tacos.data;
+package tacos;
 import java.util.Optional;
 
 
 import org.springframework.stereotype.Repository;
 import tacos.Ingredient;
-@Repository
+
 public interface IngredientRepository{
     Iterable<Ingredient> findAll();
     Optional<Ingredient> findById(String id);

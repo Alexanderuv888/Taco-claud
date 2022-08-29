@@ -1,12 +1,9 @@
-package tacos.web;
+package tacos;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import lombok.extern.slf4j.Slf4j;
-import tacos.Ingredient;
 import tacos.Ingredient.Type;
-import tacos.Taco;
-import tacos.TacoOrder;
-import tacos.data.IngredientRepository;
-import tacos.data.JdbcIngredientRepository;
 
 import javax.validation.Valid;
 
@@ -30,10 +22,10 @@ import javax.validation.Valid;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-    private final JdbcIngredientRepository ingredientRepo;
+    private final IngredientRepository ingredientRepo;
 
     @Autowired
-    public DesignTacoController(JdbcIngredientRepository ingredientRepo) {
+    public DesignTacoController(IngredientRepository ingredientRepo) {
         this.ingredientRepo = ingredientRepo;
     }
     @ModelAttribute

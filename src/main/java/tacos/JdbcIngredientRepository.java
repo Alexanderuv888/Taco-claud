@@ -1,24 +1,22 @@
-package tacos.data;
+package tacos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import tacos.Ingredient;
 
 import javax.annotation.PostConstruct;
 
-
+@Repository
 public class JdbcIngredientRepository implements IngredientRepository {
-    private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    private final JdbcTemplate jdbc;
+    @Autowired
+    public JdbcIngredientRepository(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
     }
     @PostConstruct
     public static void init() {
@@ -26,13 +24,13 @@ public class JdbcIngredientRepository implements IngredientRepository {
     }
     @Override
     public Iterable<Ingredient> findAll() {
-        return jdbcTemplate.query(
+        return jdbc.query(
                 "select id, name, type from Ingredient",
                 this::mapRowToIngredient);
     }
     @Override
     public Optional<Ingredient> findById(String id) {
-        List<Ingredient> results = jdbcTemplate.query(
+        List<Ingredient> results = jdbc.query(
                 "select id, name, type from Ingredient where id=?",
                 this::mapRowToIngredient,
                 id);
@@ -50,7 +48,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        jdbcTemplate.update(
+        jdbc.update(
                 "insert into Ingredient (id, name, type) values (?, ?, ?)",
                 ingredient.getId(),
                 ingredient.getName(),
