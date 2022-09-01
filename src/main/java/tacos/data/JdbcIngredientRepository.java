@@ -9,20 +9,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import tacos.Ingredient;
 
-import javax.annotation.PostConstruct;
 
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository {
-    @Autowired
-    private final JdbcTemplate jdbc;
+
+    private JdbcTemplate jdbc;
     @Autowired
     public JdbcIngredientRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
-    @PostConstruct
-    public static void init() {
-        new JdbcIngredientRepository(new JdbcTemplate());
-    }
+
     @Override
     public Iterable<Ingredient> findAll() {
         return jdbc.query(
