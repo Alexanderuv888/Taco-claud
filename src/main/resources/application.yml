@@ -1,0 +1,8 @@
+
+spring:
+  thymleaf:
+    cashe: false
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
+    jdbc-url: jdbc:h2:mem:tacocloud
